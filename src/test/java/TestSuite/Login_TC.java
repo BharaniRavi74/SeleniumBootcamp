@@ -37,28 +37,10 @@ import TestDataProvider.AccountDataprovider;
 
 public class Login_TC extends Base {
 
-	public ChromeDriver driver;
 	WebDriverWait wait;
-
-	@BeforeTest
-	void launch() {
-		driver = new ChromeDriver();
-		ChromeOptions ops = new ChromeOptions();
-		ops.addArguments("--disable-notifications");
-		ops.addArguments("start-maximized");
-		driver = new ChromeDriver(ops);
-		driver.get("https://login.salesforce.com"); //
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
-	}
 
 	@Test(dataProviderClass = AccountDataprovider.class, dataProvider = "AccAdd",priority = 1)
 	public void LoginToSalesForce(String username, String pswd) throws IOException {
-
-		/*
-		 * Login_page page = PageFactory.initElements(driver, Login_page.class);
-		 * page.login(username, pswd);
-		 */
 
 		driver.findElement(By.id("username")).sendKeys(username);
 		driver.findElement(By.id("password")).sendKeys(pswd);
@@ -75,7 +57,7 @@ public class Login_TC extends Base {
 			//assertEquals("True", "false");
 		} else {
 			System.out.println("Login in Failed");
-			//assertEquals("True", "false");
+			
 
 		}
 
@@ -128,18 +110,5 @@ public void Create_Accounts() {
 	
 }
 
-	@AfterMethod
-	public void tearDown(ITestResult result) throws IOException {
-		String location = "/SalesForce/test-output/FailureScreenshot/"; // location for images
-		String methodname = result.getName(); // fetching test method name
-		if (!result.isSuccess())
-			try {
-				File screenshots = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(screenshots, new File(location + methodname + "_" + ".png"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				driver.quit();
-			}
-	}
+
 }

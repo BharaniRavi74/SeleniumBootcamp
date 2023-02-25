@@ -31,7 +31,7 @@ import TestDataProvider.AccountDataprovider;
 
 public class LoginSalesforce extends Base{
 
-	//ChromeDriver driver;
+	ChromeDriver driver;
 	@Test(dataProviderClass = AccountDataprovider.class, dataProvider = "AccAdd")
 	public void LoginToSalesForce(String username, String pswd) throws IOException {	
 

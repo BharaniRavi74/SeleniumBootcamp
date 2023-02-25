@@ -21,11 +21,11 @@ ExcelRead R =new ExcelRead();
 		@DataProvider(name="AccuntDetails")
 		public Object[][] CreateAccount2(){
 			
-			Object[][] arrayObject = R.getExcelData(", null)
+			Object[][] arrayObject = R.getExcelData("", null);
 			return arrayObject;
 		}		
 		
-	}
+	
 	
 	@Test(dataProvider = "creden")
 	public void LoginToSalesForce(String user, String pswd) {
