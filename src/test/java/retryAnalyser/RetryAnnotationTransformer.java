@@ -1,4 +1,4 @@
-package RetryAnalyser;
+package retryAnalyser;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

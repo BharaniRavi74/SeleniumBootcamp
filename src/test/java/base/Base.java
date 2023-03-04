@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -20,6 +21,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+
+import util.ConfigReader;
 
 public class Base {
 
@@ -32,27 +35,38 @@ public class Base {
 		ops.addArguments("--disable-notifications");
 		ops.addArguments("start-maximized");
 		driver = new ChromeDriver(ops);
-		driver.get("https://login.salesforce.com"); //
+		driver.get(ConfigReader.URL); 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 	}
 
-	@AfterClass
-	public void tearDown() throws IOException {
-		
-		driver.quit();
+	
+
+//@AfterMethod
+public void afterMethod(ITestResult result)  {
+
+ result = Reporter.getCurrentTestResult();
+
+    switch (result.getStatus()) {
+    case ITestResult.SUCCESS:
+        System.out.println("======PASS=====");
+        // my expected functionality here when passed
+        break;
+
+    case ITestResult.FAILURE:
+        System.out.println("======FAIL=====");
+        // my expected functionality here when passed
+        break;
+
+    case ITestResult.SKIP:
+        System.out.println("======SKIP BLOCKED=====");
+        // my expected functionality here when passed
+        break;
+
+    default:
+        throw new RuntimeException("Invalid status");
+    }
+  }
 		
 	}
-		/*String location = "/SalesForce/test-output/FailureScreenshot/"; // location for images
-		String methodname = result.getName(); // fetching test method name
-		if (!result.isSuccess())
-			try {
-				File screenshots = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(screenshots, new File(location + methodname + "_" + ".png"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				driver.quit();
-			}
-	}*/
-}
+		

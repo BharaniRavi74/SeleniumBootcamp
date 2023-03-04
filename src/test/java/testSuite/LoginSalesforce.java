@@ -1,4 +1,4 @@
-package TestSuite;
+package testSuite;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,8 +26,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import Base.Base;
-import TestDataProvider.AccountDataprovider;
+import base.Base;
+import testDataProvider.AccountDataprovider;
 
 public class LoginSalesforce extends Base{
 

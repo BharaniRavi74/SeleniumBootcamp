@@ -1,4 +1,4 @@
-package TestDataProvider;
+package testDataProvider;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -13,7 +13,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Util.ExcelRead;
+import util.ExcelRead;
 
 public class AccountDataprovider {
 	
