@@ -12,8 +12,15 @@ public class Accounts_page {
 	@FindBy(xpath="(//input[@class='slds-input'])[2]")
 	WebElement Account_name_Txt;
 	
+	@FindBy(xpath="//button[@name='SaveEdit']")
+	WebElement Save_btn;
 	
-	wait.until(ExpectedConditions.visibilityOf(NewAcccount_Btn));
+	@FindBy(xpath="//div[@class='forceVisualMessageQueue']")
+	WebElement Text_verification;
+			
+	
+	public void createAccount() {
+	//wait.until(ExpectedConditions.visibilityOf(NewAcccount_Btn));
 	NewAcccount_Btn.click();
 
 	
@@ -25,12 +32,11 @@ public class Accounts_page {
 	 * Ownership_DD.click();
 	 */
 
-	WebElement Save_btn = driver.findElement(By.xpath("//button[@name='SaveEdit']"));
+	
 	Save_btn.click();
 
-	WebElement Text_verification = driver.findElement(By.xpath("//div[@class='forceVisualMessageQueue']"));
 	String text = Text_verification.getText();
 	System.out.println("Text:" + text);
 
-
+	}
 }

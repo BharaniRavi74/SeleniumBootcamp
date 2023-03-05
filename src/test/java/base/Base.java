@@ -35,7 +35,7 @@ public class Base {
 		ops.addArguments("--disable-notifications");
 		ops.addArguments("start-maximized");
 		driver = new ChromeDriver(ops);
-		driver.get(ConfigReader.URL); 
+		driver.get(ConfigReader.getProperty("Baseurl")); 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 	}
