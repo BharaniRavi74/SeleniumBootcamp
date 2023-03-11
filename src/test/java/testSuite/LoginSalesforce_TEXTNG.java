@@ -26,21 +26,25 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import base.Base;
+import base.TestNgHooks;
+import pages.SalesForce_Home_page;
+import pages.SalesForce_Login_page;
 import testDataProvider.AccountDataprovider;
 
-public class LoginSalesforce extends Base{
-
-	ChromeDriver driver;
+public class LoginSalesforce_TEXTNG extends TestNgHooks{
+	
+	
 	@Test(dataProviderClass = AccountDataprovider.class, dataProvider = "AccAdd")
 	public void LoginToSalesForce(String username, String pswd) throws IOException {	
+    
+		
+		  new SalesForce_Login_page().enterUsername(username) .enterpassword(pswd)
+		  .clicklogin();
+		  
+		 
+		//System.out.println(username+"jsh"+pswd);
 
-		driver.findElement(By.id("username")).sendKeys(username);
-		driver.findElement(By.id("password")).sendKeys(pswd);
-
-		driver.findElement(By.id("Login")).click();
-
-		WebElement Login = driver.findElement(By.xpath("//span[@class='uiImage']"));
+		/*WebElement Login = driver.findElement(By.xpath("//span[@class='uiImage']"));
 		
 		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		  wait.until(ExpectedConditions.visibilityOf(Login));
@@ -53,24 +57,19 @@ public class LoginSalesforce extends Base{
 			
 		}
 
-	}
+*/	}
 
 	
-	@AfterMethod
-	public void tearDown(ITestResult result) throws IOException {
-	   String location = "/SalesForce/test-output/FailureScreenshot";  //location for images
-	    String methodname = result.getName(); // fetching test method name
-	    if(result.isSuccess())
-	    try {
-	        File screenshots = ((TakesScreenshot) driver)
-	                               .getScreenshotAs(OutputType.FILE);
-	        FileUtils.copyFile(
-	            screenshots,
-	            new File(location + methodname+ "_" + ".png"));
-	    } catch (Exception e) {
-	          e.printStackTrace();
-	    } finally {
-	          driver.quit();
-	    }
-	}
+	//@AfterMethod
+/*
+ * public void tearDown(ITestResult result) throws IOException { String location
+ * = "/SalesForce/test-output/FailureScreenshot"; //location for images String
+ * methodname = result.getName(); // fetching test method name
+ * if(result.isSuccess()) try { File screenshots = ((TakesScreenshot) driver)
+ * .getScreenshotAs(OutputType.FILE); FileUtils.copyFile( screenshots, new
+ * File(location + methodname+ "_" + ".png")); } catch (Exception e) {
+ * e.printStackTrace();
+ */ /*
+	 * } finally { driver.quit(); } }
+	 */
 }

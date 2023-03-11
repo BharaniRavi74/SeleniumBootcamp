@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import base.Base;
+import base.TestNgHooks;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,10 +15,10 @@ import pages.SalesForce_Login_page;
 import util.ConfigReader;
 
 public class AccountSteps {
-	Base base;
+	TestNgHooks base;
 	SalesForce_Login_page login;
 	SalesForce_Home_page home;
-	WebDriver driver = Hooks.driver;
+	WebDriver driver = Cucumber_Hooks.driver;
 	WebDriverWait wait;
 
 	@Given("User Enter valid credentials")
@@ -30,6 +30,7 @@ public class AccountSteps {
 
 	@When("User clicks on submit button")
 	public void user_clicks_on_submit_button() {
+
 		new SalesForce_Login_page(driver).EnterUsername(ConfigReader.getProperty("UserName"))
 				.Enterpassword(ConfigReader.getProperty("UserPassword")).clicklogin();
 

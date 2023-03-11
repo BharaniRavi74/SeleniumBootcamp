@@ -25,8 +25,7 @@ public class ExcelRead {
 	static XSSFWorkbook workbook;
 	static XSSFSheet sheet;
 	static DataFormatter formatter = new DataFormatter();
-	ChromeDriver driver = new ChromeDriver();
-
+	
 	public static Object[][] getExcelData(String path, String sheetname) throws IOException {
 		FileInputStream fileInputStream = new FileInputStream(path); // Excel sheet file location get mentioned here
 		// get my workbook

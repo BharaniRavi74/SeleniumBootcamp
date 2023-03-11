@@ -11,54 +11,55 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SalesForce_Home_page {
+import base.TestNgHooks;
 
-	WebDriver driver;
+public class SalesForce_Home_page extends TestNgHooks{
+
+
 	WebDriverWait wait;
 
-	public SalesForce_Home_page(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+
+
+
+	/*
+	 * @FindBy(xpath = "//Button[text()='View All']") WebElement ViewAll;
+	 * 
+	 * @FindBy(xpath = "//p[text()='Sales']") WebElement Sales_option;
+	 * 
+	 * @FindBy(xpath = "//span[text()='Accounts']/parent::*") WebElement
+	 * Accounts_link;
+	 */
+
+	/*
+	 * @FindBy(xpath= "//span[@class='uiImage']") WebElement Login_img;
+	 */
+	public SalesForce_Home_page() {
+		// TODO Auto-generated constructor stub
 	}
 
-	@FindBy(xpath = "//div[@class='slds-icon-waffle']")
-	WebElement App_launcher;
-
-	@FindBy(xpath = "//Button[text()='View All']")
-	WebElement ViewAll;
-
-	@FindBy(xpath = "//p[text()='Sales']")
-	WebElement Sales_option;
-
-	@FindBy(xpath = "//span[text()='Accounts']/parent::*")
-	WebElement Accounts_link;
-
-	@FindBy(xpath= "//span[@class='uiImage']")
-	WebElement Login_img;
 	public SalesForce_Home_page AppLauncher() {
 
-		App_launcher.click();
+		click(getWebElement("xpath=//div[@class='slds-icon-waffle']"));
+		
 		return this;
 
 	}
 
 	public SalesForce_Home_page ViewAll() {
 
-		ViewAll.click();
+		click(getWebElement("xpath=//Button[text()='View All']"));
 		return this;
 	}
 
 	public SalesForce_Home_page salesoption() {
 
-		Sales_option.click();
+		click(getWebElement("xpath=//p[text()='Sales']"));
 		return this;
 	}
 
 	public SalesForce_Home_page Accounts_link() {
-
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", Accounts_link);
-		return this;
+    JSEClick(getWebElement("xpath=//span[text()='Accounts']/parent::*"));
+	return this;
 
 	}
 	

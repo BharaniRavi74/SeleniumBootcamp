@@ -15,7 +15,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
-public class Hooks {
+public class Cucumber_Hooks {
 public static WebDriver driver;
 		@Before(order=1)
 	    public void beforeScenario(){

@@ -24,49 +24,38 @@ import org.testng.annotations.BeforeTest;
 
 import util.ConfigReader;
 
-public class Base {
-
-	protected WebDriver driver;
+public class TestNgHooks extends seleniumBase {
 
 	@BeforeTest
 	public void launch() {
-
-		ChromeOptions ops = new ChromeOptions();
-		ops.addArguments("--disable-notifications");
-		ops.addArguments("start-maximized");
-		driver = new ChromeDriver(ops);
-		driver.get(ConfigReader.getProperty("Baseurl")); 
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
-	}
-
-	
+		browser("CHROME");
+		open(ConfigReader.getProperty("Baseurl"));
+			}
 
 //@AfterMethod
-public void afterMethod(ITestResult result)  {
+	public void afterMethod(ITestResult result) {
 
- result = Reporter.getCurrentTestResult();
+		result = Reporter.getCurrentTestResult();
 
-    switch (result.getStatus()) {
-    case ITestResult.SUCCESS:
-        System.out.println("======PASS=====");
-        // my expected functionality here when passed
-        break;
+		switch (result.getStatus()) {
+		case ITestResult.SUCCESS:
+			System.out.println("======PASS=====");
+			// my expected functionality here when passed
+			break;
 
-    case ITestResult.FAILURE:
-        System.out.println("======FAIL=====");
-        // my expected functionality here when passed
-        break;
+		case ITestResult.FAILURE:
+			System.out.println("======FAIL=====");
+			// my expected functionality here when passed
+			break;
 
-    case ITestResult.SKIP:
-        System.out.println("======SKIP BLOCKED=====");
-        // my expected functionality here when passed
-        break;
+		case ITestResult.SKIP:
+			System.out.println("======SKIP BLOCKED=====");
+			// my expected functionality here when passed
+			break;
 
-    default:
-        throw new RuntimeException("Invalid status");
-    }
-  }
-		
+		default:
+			throw new RuntimeException("Invalid status");
+		}
 	}
-		
+
+}

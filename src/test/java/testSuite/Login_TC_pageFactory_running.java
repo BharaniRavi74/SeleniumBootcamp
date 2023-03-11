@@ -31,11 +31,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import base.Base;
+import base.TestNgHooks;
 import pages.SalesForce_Login_page;
 import testDataProvider.AccountDataprovider;
 
-public class Login_TC_pageFactory_running extends Base {
+public class Login_TC_pageFactory_running extends TestNgHooks {
 
 	WebDriverWait wait;
 

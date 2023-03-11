@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Accounts_page {
+public class Accounts_page  {
 
 	@FindBy(xpath="//a[@title='New']")
 	WebElement NewAcccount_Btn;
